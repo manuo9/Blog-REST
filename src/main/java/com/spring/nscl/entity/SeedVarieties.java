@@ -37,14 +37,14 @@ public class SeedVarieties extends BaseEntity{
     @OneToMany(mappedBy = "varietyId")
     @JsonIgnore
     private List<Seeds> seeds;
-    @ManyToMany
-    @JoinTable(
-            name = "tl_seed_variety_states",
-            joinColumns = @JoinColumn(name = "seed_variety_id"),
-            inverseJoinColumns = @JoinColumn(name = "state_id")
-    )
+//    @ManyToMany
+//    @JoinTable(
+//            name = "tl_seed_variety_states",
+//            joinColumns = @JoinColumn(name = "seed_variety_id"),
+//            inverseJoinColumns = @JoinColumn(name = "state_id")
+//    )
     //private Set<NscStates> availableStates = new HashSet<>();
-    private Long maleVarietyId;
+    //private Long maleVarietyId;
     private String maleVarietyName;
     private Long femaleVarietyId;
     private String femaleVarietyName;

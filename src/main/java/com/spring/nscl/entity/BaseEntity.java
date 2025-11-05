@@ -29,14 +29,7 @@ public abstract class   BaseEntity implements Serializable {
     @Column(name = "updated_on")
     private LocalDateTime updatedOn;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status")
-    private RecordStatus status = RecordStatus.ACTIVE;
+    private String status;
 
-    @PrePersist
-    public void prePersist() {
-        if (status == null) {
-            status = RecordStatus.ACTIVE;
-        }
-    }
+
 }

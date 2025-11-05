@@ -1,29 +1,26 @@
-package com.spring.nscl.entity;
+package com.spring.nscl.dto;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "tm_crops")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Crop extends BaseEntity {
+public class CropDto {
 
-    @Serial
-    private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Seed crop name is required")
     private String seedCropName;
+
     private Character advancePayableFlag;
     private Character gunnyBagsRebateFlag;
     private BigDecimal gunnyBagRebateRate;
@@ -43,10 +40,13 @@ public class Crop extends BaseEntity {
     private String oldHsnShortName;
     private String inspectionCheckList;
     private String seasonName;
+
+    @NotNull(message = "Crop group ID is required")
     private Long cropGroupId;
+
     private String cropGroupName;
     private String recurrenceOfCheck;
     private String lotSize;
     private String notionValue;
-
 }
+
