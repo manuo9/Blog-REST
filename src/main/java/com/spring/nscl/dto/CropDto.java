@@ -48,5 +48,7 @@ public class CropDto {
     private String recurrenceOfCheck;
     private String lotSize;
     private String notionValue;
+
+    private String status;
 }
 

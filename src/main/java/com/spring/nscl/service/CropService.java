@@ -9,6 +9,7 @@ public interface CropService {
       ResponseModel findById(Long id);
 
       ResponseModel findByFilter(CropDto filter);
+      ResponseModel findByNameAndStatus(CropDto filter);
 
       ResponseModel dropdown();
 

@@ -21,6 +21,7 @@ public class CropController {
     }
 
     // ✅ 1. Create Crop
+    // I want to test the git functionality
     @PostMapping("/create")
     public ResponseEntity<ResponseModel> createCrop(@RequestBody CropDto dto) {
         try {
@@ -52,6 +53,19 @@ public class CropController {
         try {
             ResponseModel response = cropService.findByFilter(filter);
             return ResponseEntity.ok(response);
+        } catch (Exception ex) {
+            log.error("Error filtering crops: {}", ex.getMessage(), ex);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ResponseModel.error(ex.getMessage()));
+        }
+    }
+
+    @PostMapping("/filterByNameAndStatus")
+    public  ResponseEntity <ResponseModel> findByNameAndStatus(@RequestBody CropDto filter ) {
+
+        try {
+            ResponseModel res = cropService.findByNameAndStatus(filter);
+            return ResponseEntity.ok(res);
         } catch (Exception ex) {
             log.error("Error filtering crops: {}", ex.getMessage(), ex);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

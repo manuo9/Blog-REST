@@ -64,6 +64,24 @@ public class CropServiceImpl implements CropService {
     }
 
     @Override
+    public ResponseModel findByNameAndStatus(CropDto filter) {
+        //Use empty string if null, so it doesn’t break the query
+        String seedName = filter.getSeedCropName() != null ? filter.getSeedCropName() : "";
+        String status = filter.getStatus() != null ? filter.getStatus() : "DELETED";
+        // Call repository method directly
+        List<Crop> crops = cropRepository.findBySeedCropNameContainingIgnoreCaseAndStatusNot(seedName, status);
+
+List<CropDto> result = crops.stream().map(cr->{
+    CropDto dto = new CropDto();
+    BeanUtils.copyProperties(cr,dto);
+    return  dto;
+        }
+).collect(Collectors.toList());
+
+        return ResponseModel.ok(NscMessageConstants.RECORD_FETCHED, result);
+    }
+
+    @Override
     public ResponseModel dropdown() {
         List<Crop> crops;
         crops = cropRepository.findByStatusIgnoreCase("ACTIVE");
